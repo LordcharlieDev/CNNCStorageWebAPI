@@ -1,5 +1,7 @@
-﻿using BusinessLogic.DTOs;
+﻿using AutoMapper;
+using BusinessLogic.DTOs;
 using BusinessLogic.Interfaces;
+using CNNCStorageDB.Data;
 using CNNCStorageDB.Models;
 using System;
 using System.Collections.Generic;
@@ -11,16 +13,14 @@ namespace BusinessLogic.Services
 {
     public class DepartmentService : IDepartmentService
     {
-        public void Create(DepartmentDTO departmentDTO)
-        {
-            throw new NotImplementedException();
-        }
+        private readonly CNNCDbContext context;
+        private readonly IMapper mapper;
 
-        public void Delete(int id)
+        public DepartmentService(CNNCDbContext context, IMapper mapper)
         {
-            throw new NotImplementedException();
+            this.context = context;
+            this.mapper = mapper;
         }
-
         public IEnumerable<Department> GetAll()
         {
             throw new NotImplementedException();
@@ -30,10 +30,18 @@ namespace BusinessLogic.Services
         {
             throw new NotImplementedException();
         }
-
+        public void Create(DepartmentDTO departmentDTO)
+        {
+            throw new NotImplementedException();
+        }
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
         public void Update(DepartmentDTO departmentDTO)
         {
             throw new NotImplementedException();
         }
+
     }
 }
