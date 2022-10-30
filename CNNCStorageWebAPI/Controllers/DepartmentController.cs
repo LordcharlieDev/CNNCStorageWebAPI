@@ -49,5 +49,12 @@ namespace CNNCStorageWebAPI.Controllers
             context.SaveChanges();
             return Ok();
         }
+        [HttpPut]
+        public IActionResult Edit([FromBody] Department department)
+        {
+            context.Departments.Update(department);
+            context.SaveChanges();
+            return Ok();
+        }
     }
 }
