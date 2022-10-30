@@ -10,4 +10,8 @@
     <ProjectReference Include="E:\Google Drive\OWN FILES\IT Step\WEB\ASP.NET\Exam\REST API\CNNCStorageDB\CNNCStorageDB\CNNCStorageDB.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+  </ItemGroup>
+
 </Project>
