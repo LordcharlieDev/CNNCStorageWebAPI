@@ -6,6 +6,7 @@ using CNNCStorageDB.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,27 +22,39 @@ namespace BusinessLogic.Services
             this.context = context;
             this.mapper = mapper;
         }
-        public IEnumerable<Department> GetAll()
+        public IEnumerable<DepartmentDTO> GetAll()
         {
-            throw new NotImplementedException();
+            return mapper.Map<IEnumerable<DepartmentDTO>>(context.Departments.ToList());
         }
 
-        public Department GetById(int id)
+        public DepartmentDTO GetById(int id)
         {
-            throw new NotImplementedException();
+            var department = context.Departments.Find(id);
+            //if (department == null)
+            //{
+            //    return null;
+            //}
+            return mapper.Map<DepartmentDTO>(department);
         }
         public void Create(DepartmentDTO departmentDTO)
         {
-            throw new NotImplementedException();
+            context.Departments.Add(mapper.Map<Department>(departmentDTO));
+            context.SaveChanges();
         }
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var department = context.Departments.Find(id);
+            //if (department == null)
+            //{
+            //    return null;
+            //}
+            context.Departments.Remove(department);
+            context.SaveChanges();
         }
         public void Update(DepartmentDTO departmentDTO)
         {
-            throw new NotImplementedException();
+            context.Departments.Update(mapper.Map<Department>(departmentDTO));
+            context.SaveChanges();
         }
-
     }
 }

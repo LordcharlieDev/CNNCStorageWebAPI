@@ -1,5 +1,9 @@
+using BusinessLogic.Interfaces;
+using BusinessLogic.Services;
 using CNNCStorageDB.Data;
+using CNNCStorageDB.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 var builder = WebApplication.CreateBuilder(args);
 string connectionString = builder.Configuration.GetConnectionString("CNNCDbConnection");
@@ -8,6 +12,8 @@ string connectionString = builder.Configuration.GetConnectionString("CNNCDbConne
 builder.Services.AddControllers();
 builder.Services.AddDbContext<CNNCDbContext>(x => x.UseSqlServer(connectionString));
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+// add custom service: Singleton, Scope, Transient
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -18,42 +18,28 @@ namespace CNNCStorageWebAPI.Controllers
         [HttpGet]
         public IActionResult GetAllDepartments()
         {
-            return Ok(context.Departments.ToList());
+            return Ok();
         }
         [HttpGet("{id}")]
         public IActionResult GetById([FromRoute] int id)
         {
-            var department = context.Departments.Find(id);
-            if (department == null)
-            {
-                return NotFound();
-            }
-            return Ok(department);
+            return Ok();
         }
         [HttpPost]
         public IActionResult Create([FromBody] Department department)
         {
-            context.Departments.Add(department);
-            context.SaveChanges();
-            return Ok("Successful");
+            return Ok();
         }
         [HttpDelete("{id}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            var department = context.Departments.Find(id);
-            if (department == null)
-            {
-                return NotFound();
-            }
-            context.Departments.Remove(department);
-            context.SaveChanges();
+            
             return Ok();
         }
         [HttpPut]
         public IActionResult Edit([FromBody] Department department)
         {
-            context.Departments.Update(department);
-            context.SaveChanges();
+
             return Ok();
         }
     }

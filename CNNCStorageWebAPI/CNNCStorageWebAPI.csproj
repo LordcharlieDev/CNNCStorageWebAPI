@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
     <ProjectReference Include="E:\Google Drive\OWN FILES\IT Step\WEB\ASP.NET\Exam\REST API\CNNCStorageDB\CNNCStorageDB\CNNCStorageDB.csproj" />
   </ItemGroup>
 
