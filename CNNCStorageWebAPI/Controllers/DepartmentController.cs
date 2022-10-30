@@ -37,5 +37,17 @@ namespace CNNCStorageWebAPI.Controllers
             context.SaveChanges();
             return Ok("Successful");
         }
+        [HttpDelete("{id}")]
+        public IActionResult Delete([FromRoute] int id)
+        {
+            var department = context.Departments.Find(id);
+            if (department == null)
+            {
+                return NotFound();
+            }
+            context.Departments.Remove(department);
+            context.SaveChanges();
+            return Ok();
+        }
     }
 }
