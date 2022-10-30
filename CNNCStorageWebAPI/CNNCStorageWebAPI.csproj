@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="E:\Google Drive\OWN FILES\IT Step\WEB\ASP.NET\Exam\REST API\CNNCStorageDB\CNNCStorageDB\CNNCStorageDB.csproj" />
   </ItemGroup>
 
 </Project>
