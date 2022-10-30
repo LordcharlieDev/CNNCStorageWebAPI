@@ -15,6 +15,20 @@ namespace CNNCStorageWebAPI.Controllers
         {
             this.context = context;
         }
-
+        [HttpGet]
+        public IActionResult GetAllDepartments()
+        {
+            return Ok(context.Departments.ToList());
+        }
+        [HttpGet("{id}")]
+        public IActionResult GetById([FromRoute] int id)
+        {
+            var department = context.Departments.Find(id);
+            if (department == null)
+            {
+                return NotFound();
+            }
+            return Ok(department);
+        }
     }
 }
