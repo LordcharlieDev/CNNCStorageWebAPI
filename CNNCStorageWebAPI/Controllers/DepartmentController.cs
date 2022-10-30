@@ -30,5 +30,12 @@ namespace CNNCStorageWebAPI.Controllers
             }
             return Ok(department);
         }
+        [HttpPost]
+        public IActionResult Create([FromBody] Department department)
+        {
+            context.Departments.Add(department);
+            context.SaveChanges();
+            return Ok("Successful");
+        }
     }
 }
