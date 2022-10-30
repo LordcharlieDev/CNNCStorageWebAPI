@@ -1,4 +1,6 @@
-﻿using CNNCStorageDB.Data;
+﻿using BusinessLogic.DTOs;
+using BusinessLogic.Interfaces;
+using CNNCStorageDB.Data;
 using CNNCStorageDB.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,37 +11,40 @@ namespace CNNCStorageWebAPI.Controllers
     [ApiController]
     public class DepartmentController : ControllerBase
     {
-        private readonly CNNCDbContext context;
+        private readonly IDepartmentService departmentService;
 
-        public DepartmentController(CNNCDbContext context)
+        public DepartmentController(IDepartmentService departmentService)
         {
-            this.context = context;
+            this.departmentService = departmentService;
         }
         [HttpGet]
         public IActionResult GetAllDepartments()
         {
-            return Ok();
+            return Ok(departmentService.GetAll());
         }
         [HttpGet("{id}")]
         public IActionResult GetById([FromRoute] int id)
         {
-            return Ok();
+            return Ok(departmentService.GetById(id));
         }
         [HttpPost]
-        public IActionResult Create([FromBody] Department department)
+        public IActionResult Create([FromBody] DepartmentDTO department)
         {
+            if (!ModelState.IsValid) return BadRequest();
+            departmentService.Create(department);
             return Ok();
         }
         [HttpDelete("{id}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            
+            departmentService.Delete(id);
             return Ok();
         }
         [HttpPut]
-        public IActionResult Edit([FromBody] Department department)
+        public IActionResult Edit([FromBody] DepartmentDTO department)
         {
-
+            if (!ModelState.IsValid) return BadRequest();
+            departmentService.Update(department);
             return Ok();
         }
     }
