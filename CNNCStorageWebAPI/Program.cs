@@ -2,6 +2,7 @@ using BusinessLogic.Interfaces;
 using BusinessLogic.Services;
 using CNNCStorageDB.Data;
 using CNNCStorageDB.Models;
+using CNNCStorageWebAPI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
@@ -29,6 +30,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Add Exception Handler middleware
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthorization();
 

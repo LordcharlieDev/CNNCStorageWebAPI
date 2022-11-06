@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
 using BusinessLogic.DTOs;
+using BusinessLogic.Extentions;
 using BusinessLogic.Interfaces;
+using BusinessLogic.Resources;
 using CNNCStorageDB.Data;
 using CNNCStorageDB.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,10 +33,10 @@ namespace BusinessLogic.Services
         public DepartmentDTO GetById(int id)
         {
             var department = context.Departments.Find(id);
-            //if (department == null)
-            //{
-            //    return null;
-            //}
+            if (department == null)
+            {
+                throw new HttpException(ErrorMessages.DepartmentNotFound, HttpStatusCode.NotFound);
+            }
             return mapper.Map<DepartmentDTO>(department);
         }
         public void Create(DepartmentDTO departmentDTO)
@@ -44,10 +47,10 @@ namespace BusinessLogic.Services
         public void Delete(int id)
         {
             var department = context.Departments.Find(id);
-            //if (department == null)
-            //{
-            //    return null;
-            //}
+            if (department == null)
+            {
+                throw new HttpException(ErrorMessages.DepartmentNotFound, HttpStatusCode.NotFound);
+            }
             context.Departments.Remove(department);
             context.SaveChanges();
         }
